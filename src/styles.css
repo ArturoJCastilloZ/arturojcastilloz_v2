@@ -1,1 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+    scroll-behavior: smooth;
+}
+
+.line {
+    display: block;
+    width: 40px;
+    height: 3px;
+    margin: 20px auto;
+    background-color: #5bb462;
+}

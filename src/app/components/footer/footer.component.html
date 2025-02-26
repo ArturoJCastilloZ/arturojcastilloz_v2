@@ -1,0 +1,78 @@
+<footer class="text-gray-400 bg-gray-900">
+    <!-- <div class="container px-5 py-24 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
+        <div class="w-64 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left">
+            <p class="flex font-medium items-center md:justify-start justify-center text-gray-900">
+                <span class="text-sm font-semibold text-white">Sobre mi</span>
+            </p>
+            <p class="mt-2 text-sm text-gray-500">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit facere veniam ipsa velit nam delectus minima error neque sequi enim molestias, eaque magnam doloremque tempora maiores corporis, laudantium esse quam?</p>
+        </div>
+        <div class="flex-grow flex flex-wrap md:pl-20 -md-10 md:mt-0 mt-10 md:text-left text-center">
+            <div class="lg:w-1/4 md:w-2/1 w-full px-4">
+                <nav class="list-none mb-10 ">
+                    <h2 class="font-medium text-white tracking-widest text-sm mb-3 ">Mis cuentas</h2>
+                    <li class="mb-2" *ngFor="let item of footerOptions">
+                        <i class="bi bi-facebook" *ngIf="item?._id == 1"></i>
+                        <i class="bi bi-linkedin" *ngIf="item?._id == 2"></i>
+                        <i class="bi bi-github" *ngIf="item?._id == 3"></i>
+                    </li>
+                </nav>
+            </div>
+        </div>
+        <div class="flex-grow flex flex-wrap md:pl-20 -md-10 md:mt-0 mt-10 md:text-left text-center">
+            <div class="lg:w-1/4 md:w-2/1 w-full px-4">
+                <nav class="list-none mb-10 ">
+                    <h2 class="font-medium text-white tracking-widest text-sm mb-3 ">My Accounts</h2>
+                    <li class="mb-2">
+                        <span class="text-gray-400 hover:text-white">Orders</span>
+                    </li>
+                    <li class="mb-2">
+                        <span class="text-gray-400 hover:text-white">Orders</span>
+                    </li>
+                    <li class="mb-2">
+                        <span class="text-gray-400 hover:text-white">Orders</span>
+                    </li>
+                    <li class="mb-2">
+                        <span class="text-gray-400 hover:text-white">Orders</span>
+                    </li>
+                    <li class="mb-2">
+                        <span class="text-gray-400 hover:text-white">Orders</span>
+                    </li>
+                </nav>
+            </div>
+        </div>
+        <div class="flex-grow flex flex-wrap md:pl-20 -md-10 md:mt-0 mt-10 md:text-left text-center">
+            <div class="lg:w-1/4 md:w-2/1 w-full px-4">
+                <nav class="list-none mb-10 ">
+                    <h2 class="font-medium text-white tracking-widest text-sm mb-3 ">My Accounts</h2>
+                    <li class="mb-2">
+                        <span class="text-gray-400 hover:text-white">Orders</span>
+                    </li>
+                    <li class="mb-2">
+                        <span class="text-gray-400 hover:text-white">Orders</span>
+                    </li>
+                    <li class="mb-2">
+                        <span class="text-gray-400 hover:text-white">Orders</span>
+                    </li>
+                    <li class="mb-2">
+                        <span class="text-gray-400 hover:text-white">Orders</span>
+                    </li>
+                    <li class="mb-2">
+                        <span class="text-gray-400 hover:text-white">Orders</span>
+                    </li>
+                </nav>
+            </div>
+        </div>
+    </div> -->
+
+    <div class="bg-gray-800 bg-opacity-75">
+        <div class="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
+            <p class="text-gray-400 text-sm text-center sm:text-left">2025 ArturoJCastilloZ, All rights reserved</p>
+            <span class="inline-flex sm:ml-auto sm:mt-0 mt-2 justify-center sm:justify-center">
+                <i class="w-5 h-5" [ngClass]="{ 'bi bi-facebook': item?._id == 1, 'bi bi-linkedin': item?._id == 2, 'bi bi-github': item?._id == 3 }"  *ngFor="let item of footerOptions"></i>
+                <!-- <i class="bi bi-facebook w-5 h-5" *ngIf="item?._id == 1"></i>
+                <i class="bi bi-linkedin w-5 h-5" *ngIf="item?._id == 2"></i>
+                <i class="bi bi-github w-5 h-5" *ngIf="item?._id == 3"></i> -->
+            </span>
+        </div>
+    </div>
+</footer>

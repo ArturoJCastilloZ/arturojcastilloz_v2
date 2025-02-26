@@ -1,0 +1,32 @@
+<nav class="navbar"
+    [ngClass]="{'bg-[#000000e6]': addBackground }">
+    <div class="navbar-content">
+        <!-- Logo -->
+        <div class="flex items-center">
+            <img src="assets/logo.png" alt="Logo" class="h-16" />
+        </div>
+
+        <!-- Desktop Menu -->
+        <div class="hidden md:flex space-x-6 md:text-md font-semibold">
+            @for (item of menuOptions; track $index) {
+                <a href="javascript:void(0)" (click)="scrollTo(item?.Enlace)" class="link">{{item?.Titulo}}</a>
+            }
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button class="block md:hidden text-gray-300 hover:text-white" (click)="toggleMenu()">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+            </svg>
+        </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="md:hidden bg-[#000000e6] text-white" [class.hidden]="!isMenuOpen">
+        <a href="#" class="block px-4 py-2 hover:bg-gray-600">Inicio</a>
+        <a href="#" class="block px-4 py-2 hover:bg-gray-600">Servicios</a>
+        <a href="#" class="block px-4 py-2 hover:bg-gray-600">Acerca de</a>
+        <a href="#" class="block px-4 py-2 hover:bg-gray-600">Contacto</a>
+    </div>
+</nav>

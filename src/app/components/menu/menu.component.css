@@ -1,0 +1,19 @@
+.navbar {
+    @apply transition fixed top-0 z-50 w-full text-white duration-500;
+}
+
+.navbar-content {
+    @apply container mx-auto flex items-center md:justify-stretch justify-between p-4;
+}
+
+.link {
+    @apply uppercase border-b-2 border-transparent;
+}
+
+.link:hover {
+    @apply text-cyan-500 border-b-2 border-cyan-500;
+}
+
+.isActive {
+    @apply text-cyan-500 border-b-2 border-cyan-500;
+}

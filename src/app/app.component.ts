@@ -1,12 +1,35 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { Component, inject, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { FooterComponent } from './components/footer/footer.component';
+import { MenuComponent } from './components/menu/menu.component';
+import { NgZorroAntdModule } from './ng-zorro-antd.module';
+import { AboutComponent } from './pages/about/about.component';
+import { HeroComponent } from './pages/hero/hero.component';
+import { GET_IMAGES } from './state/actions/adjcz.action';
 
 @Component({
-  selector: 'app-root',
-  imports: [RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+    selector: 'app-root',
+    imports: [
+        CommonModule,
+        NzIconModule,
+        NgZorroAntdModule,
+        MenuComponent,
+        HeroComponent,
+        FooterComponent,
+        AboutComponent
+    ],
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.css',
 })
-export class AppComponent {
-  title = 'new-site';
+export class AppComponent implements OnInit {
+
+    private readonly _STORE = inject(Store<any>);
+
+    constructor() { }
+    
+    ngOnInit() {
+        this._STORE.dispatch(GET_IMAGES());
+    }
 }
