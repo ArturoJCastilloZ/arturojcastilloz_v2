@@ -1,4 +1,4 @@
-import { IAbout, IHero, IMenu } from "../../interfaces/app.interface";
+import { IAbout, IHero, IMenu, IStudies } from "../../interfaces/app.interface";
 
 
 export interface CatalogState {
@@ -6,4 +6,5 @@ export interface CatalogState {
     about: IAbout[];
     images: string[];
     hero: IHero[];
+    studies: IStudies[];
 }

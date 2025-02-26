@@ -2,8 +2,8 @@ import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { selectAboutData, selectHeroData, selectImages } from '../state/selectors/app.select';
-import { IAbout, IHero } from '../interfaces/app.interface';
+import { selectAboutData, selectHeroData, selectImages, selectStudies } from '../state/selectors/app.select';
+import { IAbout, IHero, IStudies } from '../interfaces/app.interface';
 
 @Injectable({
     providedIn: 'root'
@@ -11,6 +11,7 @@ import { IAbout, IHero } from '../interfaces/app.interface';
 export class CommonService {
     heroData$ = new Observable<IHero[]>();
     aboutData$ = new Observable<IAbout[]>();
+    studiesData$ = new Observable<IStudies[]>();
     imagesUrl$ = new Observable<string[]>();
 
     private readonly _STORE = inject(Store<any>);
@@ -23,6 +24,7 @@ export class CommonService {
     initialize() {
         this.heroData$ = this._STORE.select(selectHeroData);
         this.aboutData$ = this._STORE.select(selectAboutData);
+        this.studiesData$ = this._STORE.select(selectStudies);
         this.imagesUrl$ = this._STORE.select(selectImages);
     }
     

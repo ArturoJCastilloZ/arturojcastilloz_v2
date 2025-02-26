@@ -8,6 +8,7 @@ import { NgZorroAntdModule } from './ng-zorro-antd.module';
 import { AboutComponent } from './pages/about/about.component';
 import { HeroComponent } from './pages/hero/hero.component';
 import { GET_IMAGES } from './state/actions/adjcz.action';
+import { StudiesComponent } from './pages/studies/studies.component';
 
 @Component({
     selector: 'app-root',
@@ -18,7 +19,8 @@ import { GET_IMAGES } from './state/actions/adjcz.action';
         MenuComponent,
         HeroComponent,
         FooterComponent,
-        AboutComponent
+        AboutComponent,
+        StudiesComponent
     ],
     templateUrl: './app.component.html',
     styleUrl: './app.component.css',

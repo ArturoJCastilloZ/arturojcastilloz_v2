@@ -23,3 +23,11 @@ export interface IHero {
     Presentacion: string;
     Puesto: string;
 }
+
+export interface IStudies {
+    Fin: string;
+    Titulo: string;
+    Inicio: string;
+    _id: number;
+    Escuela: string;
+}
