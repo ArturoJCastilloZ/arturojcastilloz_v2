@@ -9,19 +9,21 @@ import { AboutComponent } from './pages/about/about.component';
 import { HeroComponent } from './pages/hero/hero.component';
 import { GET_IMAGES } from './state/actions/adjcz.action';
 import { StudiesComponent } from './pages/studies/studies.component';
+import { JobsComponent } from "./pages/jobs/jobs.component";
 
 @Component({
     selector: 'app-root',
     imports: [
-        CommonModule,
-        NzIconModule,
-        NgZorroAntdModule,
-        MenuComponent,
-        HeroComponent,
-        FooterComponent,
-        AboutComponent,
-        StudiesComponent
-    ],
+    CommonModule,
+    NzIconModule,
+    NgZorroAntdModule,
+    MenuComponent,
+    HeroComponent,
+    FooterComponent,
+    AboutComponent,
+    StudiesComponent,
+    JobsComponent
+],
     templateUrl: './app.component.html',
     styleUrl: './app.component.css',
 })

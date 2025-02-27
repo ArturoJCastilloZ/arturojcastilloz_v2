@@ -1,7 +1,7 @@
 import { inject, Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { Store } from "@ngrx/store";
-import { GET_ABOUT, GET_ABOUT_ERROR, GET_ABOUT_SUCCESS, GET_HEADERS, GET_HEADERS_ERROR, GET_HEADERS_SUCCESS, GET_HERO, GET_HERO_ERROR, GET_HERO_SUCCESS, GET_IMAGES, GET_IMAGES_ERROR, GET_IMAGES_SUCCESS, GET_STUDIES, GET_STUDIES_ERROR, GET_STUDIES_SUCCESS } from "../actions/adjcz.action";
+import { GET_ABOUT, GET_ABOUT_ERROR, GET_ABOUT_SUCCESS, GET_HEADERS, GET_HEADERS_ERROR, GET_HEADERS_SUCCESS, GET_HERO, GET_HERO_ERROR, GET_HERO_SUCCESS, GET_IMAGES, GET_IMAGES_ERROR, GET_IMAGES_SUCCESS, GET_JOBS, GET_JOBS_ERROR, GET_JOBS_SUCCESS, GET_STUDIES, GET_STUDIES_ERROR, GET_STUDIES_SUCCESS } from "../actions/adjcz.action";
 import { catchError, map, of, switchMap, tap } from "rxjs";
 import { HttpService } from "../../services/http.service";
 import { environment } from "../../../../environments/environemnt";
@@ -91,6 +91,23 @@ export class AdjczEffects {
     GET_STUDIES_ERROR$ = createEffect(() => {
         return this._ACTIONS.pipe(
             ofType(GET_STUDIES_ERROR),
+            tap((action) => {
+                console.log(action.error)
+            })
+        )
+    }, {dispatch: false});
+
+    GET_JOBS$ = createEffect(() => this._ACTIONS.pipe(
+        ofType(GET_JOBS),
+        switchMap((params) => this._HTTP.GET(`${environment.apiUrl}/jobs`).pipe(
+            map((response) => GET_JOBS_SUCCESS({ response })),
+            catchError((error) => of(GET_JOBS_ERROR({ error })))
+        ))
+    ));
+
+    GET_JOBS_ERROR$ = createEffect(() => {
+        return this._ACTIONS.pipe(
+            ofType(GET_JOBS_ERROR),
             tap((action) => {
                 console.log(action.error)
             })

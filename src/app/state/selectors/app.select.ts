@@ -8,3 +8,4 @@ export const selectMenuOptions = createSelector(data, (state: CatalogState) => s
 export const selectAboutData = createSelector(data, (state: CatalogState) => state.about);
 export const selectImages = createSelector(data, (state: CatalogState) => state.images);
 export const selectStudies = createSelector(data, (state: CatalogState) => state.studies);
+export const selectJobs = createSelector(data, (state: CatalogState) => state.jobs);

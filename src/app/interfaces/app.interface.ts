@@ -31,3 +31,12 @@ export interface IStudies {
     _id: number;
     Escuela: string;
 }
+
+export interface IJobs {
+    Fin: string;
+    Empresa: string;
+    Actividades: string;
+    Inicio: string;
+    _id: number;
+    Puesto: string;
+}

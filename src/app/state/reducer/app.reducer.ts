@@ -1,5 +1,5 @@
 import { createReducer, on } from "@ngrx/store";
-import { GET_ABOUT_SUCCESS, GET_HEADERS_SUCCESS, GET_HERO_SUCCESS, GET_IMAGES_SUCCESS, GET_STUDIES_SUCCESS } from "../actions/adjcz.action";
+import { GET_ABOUT_SUCCESS, GET_HEADERS_SUCCESS, GET_HERO_SUCCESS, GET_IMAGES_SUCCESS, GET_JOBS_SUCCESS, GET_STUDIES_SUCCESS } from "../actions/adjcz.action";
 import { CatalogState } from "../states/catalog.state";
 
 export const initialState: CatalogState = {
@@ -7,7 +7,8 @@ export const initialState: CatalogState = {
     about: [],
     images: [],
     hero: [],
-    studies: []
+    studies: [],
+    jobs: []
 }
 
 export const catalogReducer = createReducer(
@@ -31,5 +32,9 @@ export const catalogReducer = createReducer(
     on(GET_STUDIES_SUCCESS, (state, {response}) => ({
         ...state,
         studies: response
+    })),
+    on(GET_JOBS_SUCCESS, (state, {response}) => ({
+        ...state,
+        jobs: response
     })),
 );

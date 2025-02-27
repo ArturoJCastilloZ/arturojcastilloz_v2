@@ -1,5 +1,5 @@
 import { createAction, props } from "@ngrx/store";
-import { IAbout, IHero, IMenu, IStudies } from "../../interfaces/app.interface";
+import { IAbout, IHero, IJobs, IMenu, IStudies } from "../../interfaces/app.interface";
 
 export const GET_HERO = createAction(
     '[HERO] GET_HERO'
@@ -68,5 +68,19 @@ export const GET_STUDIES_SUCCESS = createAction(
 
 export const GET_STUDIES_ERROR = createAction(
     '[STUDIES] GET_STUDIES_ERROR',
+    props<{ error: any }>()
+);
+
+export const GET_JOBS = createAction(
+    '[JOBS] GET_JOBS'
+);
+
+export const GET_JOBS_SUCCESS = createAction(
+    '[JOBS] GET_JOBS_SUCCESS',
+    props<{ response: IJobs[] }>()
+);
+
+export const GET_JOBS_ERROR = createAction(
+    '[JOBS] GET_JOBS_ERROR',
     props<{ error: any }>()
 );
