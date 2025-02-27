@@ -9,7 +9,7 @@
         <!-- Desktop Menu -->
         <div class="hidden md:flex space-x-6 md:text-md font-semibold">
             @for (item of menuOptions; track $index) {
-                <a href="javascript:void(0)" (click)="scrollTo(item?.Enlace)" class="link">{{item?.Titulo}}</a>
+                <a href="javascript:void(0)" (click)="scrollTo(item.Enlace)" class="link">{{item?.Titulo}}</a>
             }
         </div>
 

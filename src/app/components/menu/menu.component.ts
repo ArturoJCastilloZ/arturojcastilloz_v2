@@ -1,16 +1,17 @@
 import { CommonModule, ViewportScroller } from '@angular/common';
 import { Component, DestroyRef, HostListener, inject, OnInit } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { RouterModule } from '@angular/router';
 import { Actions, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
-import { first, Observable } from 'rxjs';
-import { IMenu } from '../../interfaces/app.interface';
-import { CommonService } from '../../services/common.service';
-import { GET_HEADERS, GET_IMAGES, GET_IMAGES_SUCCESS } from '../../state/actions/adjcz.action';
-import { selectImages, selectMenuOptions } from '../../state/selectors/app.select';
 import { NzIconModule } from 'ng-zorro-antd/icon';
+import { Observable } from 'rxjs';
+import { IMenu } from '../../interfaces/app.interface';
 import { NgZorroAntdModule } from '../../ng-zorro-antd.module';
-import { RouterModule } from '@angular/router';
+import { CommonService } from '../../services/common.service';
+import { GET_HEADERS, GET_IMAGES_SUCCESS } from '../../state/actions/adjcz.action';
+import { selectMenuOptions } from '../../state/selectors/app.select';
+import * as _ from 'underscore'
 
 @Component({
     selector: 'app-menu',
@@ -29,7 +30,7 @@ export class MenuComponent implements OnInit {
     isMenuOpen = false;
 
     menuIsOpen: boolean = false;
-    menuOptions: any[] = [];
+    menuOptions: IMenu[] = [];
     menuOptions$ = new Observable<IMenu[]>();
     pathImages: { [key: string]: string } = {};
     addBackground: boolean = false;
@@ -52,9 +53,12 @@ export class MenuComponent implements OnInit {
     constructor() {
         this._STORE.select(selectMenuOptions).pipe(
             takeUntilDestroyed(this._DESTROYREF)
-        ).subscribe((data: any) => {
+        ).subscribe((data) => {
+            // TODO: Realizar un sort validando el _id
             if (data?.length > 0) {
-                this.menuOptions = data;
+                this.menuOptions = _.sortBy(data, function (f) {
+                    return f._id;
+                });
             }
         });
 
