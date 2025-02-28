@@ -40,9 +40,7 @@ export class JobsComponent implements OnInit, AfterContentChecked {
         })
     }
 
-    ngOnInit() {
-        this._STORE.dispatch(GET_JOBS());
-    }
+    ngOnInit() {}
 
     ngAfterContentChecked() {
         this.isMobile = window.innerWidth < 769;

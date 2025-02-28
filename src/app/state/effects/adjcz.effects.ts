@@ -4,7 +4,7 @@ import { Store } from "@ngrx/store";
 import { GET_ABOUT, GET_ABOUT_ERROR, GET_ABOUT_SUCCESS, GET_HEADERS, GET_HEADERS_ERROR, GET_HEADERS_SUCCESS, GET_HERO, GET_HERO_ERROR, GET_HERO_SUCCESS, GET_IMAGES, GET_IMAGES_ERROR, GET_IMAGES_SUCCESS, GET_JOBS, GET_JOBS_ERROR, GET_JOBS_SUCCESS, GET_STUDIES, GET_STUDIES_ERROR, GET_STUDIES_SUCCESS } from "../actions/adjcz.action";
 import { catchError, map, of, switchMap, tap } from "rxjs";
 import { HttpService } from "../../services/http.service";
-import { environment } from "../../../../environments/environemnt";
+import { environment } from "../../../../environments/environment";
 
 @Injectable()
 export class AdjczEffects {

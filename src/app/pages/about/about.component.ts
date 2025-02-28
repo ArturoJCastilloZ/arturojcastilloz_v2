@@ -42,7 +42,7 @@ export class AboutComponent implements OnInit {
     }
 
     ngOnInit() {
-        this._STORE.dispatch(GET_ABOUT());
+        
     }
 
 }

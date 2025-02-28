@@ -1,5 +1,5 @@
 <nav class="navbar"
-    [ngClass]="{'bg-[#000000e6]': addBackground }">
+    [ngClass]="{'md:bg-[#000000e6]': addBackground, 'bg-[#000000]': isMobile }">
     <div class="navbar-content">
         <!-- Logo -->
         <div class="flex items-center">
@@ -24,9 +24,8 @@
 
     <!-- Mobile Menu -->
     <div class="md:hidden bg-[#000000e6] text-white" [class.hidden]="!isMenuOpen">
-        <a href="#" class="block px-4 py-2 hover:bg-gray-600">Inicio</a>
-        <a href="#" class="block px-4 py-2 hover:bg-gray-600">Servicios</a>
-        <a href="#" class="block px-4 py-2 hover:bg-gray-600">Acerca de</a>
-        <a href="#" class="block px-4 py-2 hover:bg-gray-600">Contacto</a>
+        @for (item of menuOptions; track $index) {
+            <a href="javascript:void(0)" (click)="scrollTo(item.Enlace); isMenuOpen = false" class="link block px-4 py-2 hover:bg-gray-600">{{item?.Titulo}}</a>
+        }
     </div>
 </nav>

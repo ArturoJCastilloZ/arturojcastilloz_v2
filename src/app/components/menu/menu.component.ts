@@ -33,6 +33,7 @@ export class MenuComponent implements OnInit {
     menuOptions: IMenu[] = [];
     menuOptions$ = new Observable<IMenu[]>();
     addBackground: boolean = false;
+    isMobile = false;
 
     private readonly _ACTIONS = inject(Actions);
     private readonly _STORE = inject(Store<any>);
@@ -64,12 +65,15 @@ export class MenuComponent implements OnInit {
             ofType(GET_IMAGES_SUCCESS),
             takeUntilDestroyed(this._DESTROYREF)
         ).subscribe(() => {
-            this._STORE.dispatch(GET_HEADERS());
         });
     }
-
+    
     ngOnInit() {
         this.onResize();
+    }
+
+    ngAfterContentChecked() {
+        this.isMobile = window.innerWidth < 769;
     }
 
     toggleMenu() {

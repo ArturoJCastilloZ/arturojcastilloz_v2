@@ -38,6 +38,6 @@ export class HeroComponent implements OnInit {
     }
 
     ngOnInit() {
-        this._STORE.dispatch(GET_HERO());
+        
     }
  }

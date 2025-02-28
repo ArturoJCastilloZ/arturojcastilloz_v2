@@ -34,7 +34,7 @@ export class StudiesComponent implements OnInit {
     }
 
     ngOnInit() {
-        this._STORE.dispatch(GET_STUDIES());
+        
     }
 
 }

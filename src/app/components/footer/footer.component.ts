@@ -16,21 +16,21 @@ export class FooterComponent implements OnInit {
         {
             Url: "mailto:castillo.arturo93@hotmail.com",
             Titulo: "Comúnicate conmigo",
-            Icono: "FaMailBulk",
+            Icono: "bi bi-envelope-at-fill",
             Color: "#e3d002",
             _id: 1
         },
         {
             Url: "https://github.com/ArturoJCastilloZ?tab=repositories",
-            Titulo: "Mis Reposssss",
-            Icono: "FaGithub",
+            Titulo: "Mis Repos",
+            Icono: "bi bi-github",
             Color: "#ff8000",
             _id: 3
         },
         {
-            Url: "https://www.linkedin.com/in/castillo93/",
+            Url: "https://www.linkedin.com/in/arturojcastilloz/",
             Titulo: "Mi LinkedIn",
-            Icono: "FaLinkedin",
+            Icono: "bi bi-linkedin",
             Color: "#0072b1",
             _id: 2
         }
@@ -39,7 +39,7 @@ export class FooterComponent implements OnInit {
     constructor() { }
 
     ngOnInit() {
-        this.footerOptions?.map((data) => console.log(data.Titulo))
+        // this.footerOptions?.map((data) => console.log(data.Titulo))
     }
 
 }
