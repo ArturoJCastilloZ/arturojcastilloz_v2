@@ -6,17 +6,24 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { take } from 'rxjs';
 import { GET_ABOUT, GET_HERO } from '../../state/actions/adjcz.action';
 import { IAbout, IHero } from '../../interfaces/app.interface';
+import { CommonModule } from '@angular/common';
+import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 
 @Component({
     selector: 'app-hero',
     templateUrl: './hero.component.html',
     styleUrl: './hero.component.css',
+    standalone: true,
+    imports: [
+        CommonModule,
+        NzToolTipModule
+    ]
 })
 export class HeroComponent implements OnInit {
     userDescription: IHero[] = [];
     career: string = '';
-    private readonly _STORE = inject(Store<any>);
-    private readonly _COMMON = inject(CommonService);
+
+    public readonly _COMMON = inject(CommonService);
     private readonly _DESTROYREF = inject(DestroyRef);
 
     constructor() {
@@ -37,7 +44,12 @@ export class HeroComponent implements OnInit {
         });
     }
 
-    ngOnInit() {
-        
+    ngOnInit() { }
+
+    downloadCV() {
+        const link = document.createElement('a');
+        link.href = '/assets/resume.pdf';
+        link.download = 'CV_Arturo_Castillo.pdf';
+        link.click();
     }
- }
+}

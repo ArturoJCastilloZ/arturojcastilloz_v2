@@ -17,6 +17,37 @@ export class CommonService {
     imagesUrl$ = new Observable<string[]>();
     pathImages: { [key: string]: string } = {};
 
+    footerOptions = [
+        {
+            Url: "mailto:castillo.arturo93@hotmail.com",
+            Titulo: "Contáctame",
+            Icono: "bi bi-envelope-at-fill",
+            Color: "#e3d002",
+            _id: 1
+        },
+        {
+            Url: "https://github.com/ArturoJCastilloZ?tab=repositories",
+            Titulo: "Mis Repos",
+            Icono: "bi bi-github",
+            Color: "#ff8000",
+            _id: 3
+        },
+        {
+            Url: "https://www.linkedin.com/in/arturojcastilloz/",
+            Titulo: "Mi LinkedIn",
+            Icono: "bi bi-linkedin",
+            Color: "#0072b1",
+            _id: 2
+        },
+        {
+            Url: "/assets/resume.pdf", // Ruta al archivo PDF en la carpeta assets
+            Titulo: "Descargar CV",
+            Icono: "bi bi-file-earmark-pdf-fill", // Icono de PDF
+            Color: "#ff0000", // Color rojo (puedes cambiarlo)
+            _id: 4
+        }
+    ];
+
     private readonly _STORE = inject(Store<any>);
     private readonly _ROUTER = inject(Router);
     private readonly _DESTROYREF = inject(DestroyRef);

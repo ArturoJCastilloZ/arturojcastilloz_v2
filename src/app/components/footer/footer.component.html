@@ -3,9 +3,17 @@
         <div class="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
             <span class="md:inline-flex inline-block text-center md:mb-0 mb-4 sm:mr-auto sm:mt-0 mt-2 justify-center sm:justify-center space-x-6">
                 <p class="text-gray-400 text-sm text-center">Sitio creado por: ArturoJCastilloZ</p>
-                @for (item of footerOptions; track $index) {
-                    <a href="{{item?.Url}}" target="_blank" class="m-0">
-                        <i class="md:text-[16px] text-[20px] md:cursor-pointer cursor-default" [ngClass]="item?.Icono"></i>
+                @for (item of _COMMON.footerOptions; track $index) {
+                    <a 
+                        href="{{item?.Url}}" 
+                        target="{{item?.Titulo === 'Descargar CV' ? '_self' : '_blank'}}" 
+                        class="m-0"
+                        [attr.download]="item?.Titulo === 'Descargar CV' ? 'CV_Arturo_Castillo.pdf' : null"
+                    >
+                        <i 
+                            class="md:text-[16px] text-[20px] md:cursor-pointer cursor-default" 
+                            [ngClass]="item?.Icono"
+                        ></i>
                     </a>
                 }
             </span>

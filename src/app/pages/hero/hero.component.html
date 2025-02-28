@@ -1,7 +1,7 @@
 <div class="relative h-[100vh] w-full bg-black md:p-20 p-0" id="home">
     <div class="absolute inset-0 md:left-80 left-24 opacity-50">
         <img src="/assets/bg.png" alt="logo.pnr" class="object-cover center w-full h-full">
-        <div class="absolute inset-0 bg-gradient-to-r from-black via-black/50 to-transparent"></div>
+        <div class="absolute inset-0| bg-gradient-to-r from-black via-black/50 to-transparent"></div>
     </div>
 
     <div class="relative flex items-center h-full">
@@ -16,6 +16,19 @@
                     <p class="text-lg font-medium text-white">{{ item?.Ciudad }}</p>
                 </div>
             }
+            <span class="md:inline-flex inline-block text-center md:mb-0 mb-4 sm:mr-auto mt-2 text-[#c2c2c2] justify-center sm:justify-center space-x-6">
+                @for (item of _COMMON.footerOptions; track $index) {
+                    @if (item?.Titulo === 'Descargar CV') {
+                        <span  (click)="downloadCV()" class="m-0 cursor-pointer hover:text-cyan-500 transition duration-500">
+                            <i class="text-[25px]" [ngClass]="item?.Icono" [nz-tooltip]="item?.Titulo" nzTooltipPlacement="bottom"></i>
+                        </span>
+                    } @else {
+                        <a href="{{item?.Url}}" target="_blank" class="m-0" [nz-tooltip]="item?.Titulo" nzTooltipPlacement="bottom">
+                            <i class="text-[25px] md:cursor-pointer cursor-default" [ngClass]="item?.Icono"></i>
+                        </a>
+                    }
+                }
+            </span>
         </div>
     </div>
 </div>
