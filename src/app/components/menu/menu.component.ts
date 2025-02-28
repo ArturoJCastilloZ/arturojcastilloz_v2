@@ -6,12 +6,12 @@ import { Actions, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { Observable } from 'rxjs';
+import * as _ from 'underscore';
 import { IMenu } from '../../interfaces/app.interface';
 import { NgZorroAntdModule } from '../../ng-zorro-antd.module';
 import { CommonService } from '../../services/common.service';
 import { GET_HEADERS, GET_IMAGES_SUCCESS } from '../../state/actions/adjcz.action';
 import { selectMenuOptions } from '../../state/selectors/app.select';
-import * as _ from 'underscore'
 
 @Component({
     selector: 'app-menu',
@@ -32,7 +32,6 @@ export class MenuComponent implements OnInit {
     menuIsOpen: boolean = false;
     menuOptions: IMenu[] = [];
     menuOptions$ = new Observable<IMenu[]>();
-    pathImages: { [key: string]: string } = {};
     addBackground: boolean = false;
 
     private readonly _ACTIONS = inject(Actions);
@@ -54,7 +53,6 @@ export class MenuComponent implements OnInit {
         this._STORE.select(selectMenuOptions).pipe(
             takeUntilDestroyed(this._DESTROYREF)
         ).subscribe((data) => {
-            // TODO: Realizar un sort validando el _id
             if (data?.length > 0) {
                 this.menuOptions = _.sortBy(data, function (f) {
                     return f._id;
@@ -65,14 +63,7 @@ export class MenuComponent implements OnInit {
         this._ACTIONS.pipe(
             ofType(GET_IMAGES_SUCCESS),
             takeUntilDestroyed(this._DESTROYREF)
-        ).subscribe((action) => {
-            action?.response?.map((url: string) => {
-                const path = url.split('?')[0];
-                const relativeRoutes = path.substring(path.lastIndexOf('/assets/'))
-                relativeRoutes?.replaceAll
-                this.pathImages[relativeRoutes.replaceAll('/assets/', '')] = url;
-            });
-
+        ).subscribe(() => {
             this._STORE.dispatch(GET_HEADERS());
         });
     }

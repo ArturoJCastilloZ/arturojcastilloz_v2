@@ -1,0 +1,23 @@
+<div class="bg-black text-white md:p-[50px] p-[10px]" id="skills">
+    <h2 class="md:text-5xl text-[2rem] tracking-[10px] font-bold text-center text-white uppercase">
+        Interéses y habilidades
+    </h2>
+    <span class='line'></span>
+    <div class="md:flex md:justify-evenly grid grid-cols-5 items-center">
+
+        @for (item of paths; track $index) {
+            <div [ngClass]="{'bg-slate-500 rounded-full': item?.name === 'github'}">
+
+                <img src="assets/{{item?.src}}"
+                srcset="assets/{{item?.src}}-small.png 480w,
+                        assets/{{item?.src}}-medium.png 800w,
+                        assets/{{item?.src}}-large.png 1200w"
+                sizes="(max-width: 600px) 480px,
+                       (max-width: 900px) 800px,
+                       1200px"
+                [alt]="item?.name"
+                loading="lazy" />
+            </div>
+        }
+    </div>
+</div>

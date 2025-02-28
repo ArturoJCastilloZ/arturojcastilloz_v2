@@ -14,3 +14,8 @@ html {
     margin: 20px auto;
     background-color: #5bb462;
 }
+
+img {
+    max-inline-size: 100%;
+    block-size: auto;
+}

@@ -15,33 +15,20 @@ import { CommonService } from '../../services/common.service';
     styleUrls: ['./about.component.css'],
     standalone: true,
     imports: [
-        CommonModule
+        CommonModule,
     ]
 })
 export class AboutComponent implements OnInit {
     aboutData$ = new Observable<IAbout[]>();
     aboutData: IAbout[] = [];
-    pathImages: { [key: string]: string } = {};
     srcImage: string = '';
     profesion: string = '';
 
-    private readonly _ACTIONS = inject(Actions);
     private readonly _STORE = inject(Store<any>);
     private readonly _DESTROYREF = inject(DestroyRef);
-    private readonly _COMMON = inject(CommonService);
+    public readonly _COMMON = inject(CommonService);
 
     constructor() {
-        this._STORE.select(selectImages).pipe(
-            takeUntilDestroyed(this._DESTROYREF)
-        ).subscribe((data) => {
-            data.map((url: string) => {
-                const path = url.split('?')[0]; // Eliminar los parámetros
-                const relativeRoutes = path.substring(path.lastIndexOf('/assets/'))
-                relativeRoutes?.replaceAll
-                this.pathImages[relativeRoutes.replaceAll('/assets/', '')] = url;
-            })
-        });
-
         this._COMMON.aboutData$.pipe(
             takeUntilDestroyed(this._DESTROYREF)
         ).subscribe((data) => {

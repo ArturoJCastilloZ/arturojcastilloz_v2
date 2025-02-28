@@ -10,6 +10,7 @@ import { HeroComponent } from './pages/hero/hero.component';
 import { GET_IMAGES } from './state/actions/adjcz.action';
 import { StudiesComponent } from './pages/studies/studies.component';
 import { JobsComponent } from "./pages/jobs/jobs.component";
+import { SkillsComponent } from "./pages/skills/skills.component";
 
 @Component({
     selector: 'app-root',
@@ -22,18 +23,21 @@ import { JobsComponent } from "./pages/jobs/jobs.component";
     FooterComponent,
     AboutComponent,
     StudiesComponent,
-    JobsComponent
+    JobsComponent,
+    SkillsComponent
 ],
     templateUrl: './app.component.html',
     styleUrl: './app.component.css',
 })
 export class AppComponent implements OnInit {
+    
 
     private readonly _STORE = inject(Store<any>);
 
     constructor() { }
     
     ngOnInit() {
-        this._STORE.dispatch(GET_IMAGES());
+
+        // this._STORE.dispatch(GET_IMAGES());
     }
 }
