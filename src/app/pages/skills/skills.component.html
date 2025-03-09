@@ -6,7 +6,8 @@
     <div class="md:flex md:justify-evenly grid grid-cols-5 items-center">
 
         @for (item of paths; track $index) {
-            <div [ngClass]="{'bg-slate-500 rounded-full': item?.name === 'github'}">
+            <div [ngClass]="{'bg-slate-500 rounded-full': item?.name === 'github'}"
+                data-aos="fade-up" data-aos-duration="1500" [attr.data-aos-delay]="$index * 500">
 
                 <img src="assets/{{item?.src}}"
                 srcset="assets/{{item?.src}}-small.png 480w,
