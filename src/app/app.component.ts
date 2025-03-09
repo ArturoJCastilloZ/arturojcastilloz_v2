@@ -15,6 +15,7 @@ import { JobsComponent } from "./pages/jobs/jobs.component";
 import { SkillsComponent } from "./pages/skills/skills.component";
 import { StudiesComponent } from './pages/studies/studies.component';
 import { GET_ABOUT, GET_ABOUT_SUCCESS, GET_HEADERS, GET_HEADERS_SUCCESS, GET_HERO, GET_JOBS, GET_JOBS_SUCCESS, GET_STUDIES, GET_STUDIES_SUCCESS } from './state/actions/adjcz.action';
+import * as AOS from "aos";
 
 @Component({
     selector: 'app-root',
@@ -54,6 +55,7 @@ export class AppComponent implements OnInit {
     }
 
     ngOnInit() {
+        AOS.init();
         this._STORE.dispatch(GET_HEADERS());
         this._STORE.dispatch(GET_ABOUT());
         this._STORE.dispatch(GET_STUDIES());
