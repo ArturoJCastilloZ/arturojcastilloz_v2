@@ -1,13 +1,13 @@
-<div class="relative min-h-screen">
-    <app-menu></app-menu>
-    <main>
-        <app-hero />
-        <div>
+<nz-spin [nzSpinning]="isLoading" nzSize="large" nzTip="Cargando informacion...">
+    <div class="relative min-h-screen">
+        <app-menu></app-menu>
+        <main>
+            <app-hero />
             <app-about />
             <app-studies />
             <app-jobs />
             <app-skills />
-        </div>
-    </main>
-    <app-footer></app-footer>
-</div>
+        </main>
+        <app-footer></app-footer>
+    </div>
+</nz-spin>
