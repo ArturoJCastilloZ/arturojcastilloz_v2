@@ -1,13 +1,13 @@
 <footer class="text-gray-400 bg-gray-900">
     <div class="bg-gray-800 bg-opacity-75">
         <div class="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
-            <span class="md:inline-flex inline-block text-center md:mb-0 mb-4 sm:mr-auto sm:mt-0 mt-2 justify-center sm:justify-center space-x-6">
+            <span class="md:inline-flex inline-block text-center md:mb-0 mb-4 sm:mr-auto sm:mt-0 mt-2 justify-center sm:justify-center">
                 <p class="text-gray-400 text-sm text-center">Sitio creado por: ArturoJCastilloZ</p>
                 @for (item of _COMMON.footerOptions; track $index) {
                     <a 
                         href="{{item?.Url}}" 
                         target="{{item?.Titulo === 'Descargar CV' ? '_self' : '_blank'}}" 
-                        class="m-0"
+                        class="md:mx-2 mx-5"
                         [attr.download]="item?.Titulo === 'Descargar CV' ? 'CV_Arturo_Castillo.pdf' : null"
                     >
                         <i 
