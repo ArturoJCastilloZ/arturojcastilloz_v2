@@ -1,9 +1,9 @@
-import { DestroyRef, inject, Injectable } from '@angular/core';
+import { DestroyRef, inject, Injectable, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { selectAboutData, selectHeroData, selectImages, selectJobs, selectStudies } from '../state/selectors/app.select';
-import { IAbout, IHero, IJobs, IStudies } from '../interfaces/app.interface';
+import { selectAboutData, selectHeroData, selectImages, selectJobs, selectMenuOptions, selectStudies } from '../state/selectors/app.select';
+import { IAbout, IHero, IJobs, IMenu, IStudies } from '../interfaces/app.interface';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Injectable({
@@ -15,7 +15,9 @@ export class CommonService {
     studiesData$ = new Observable<IStudies[]>();
     jobsData$ = new Observable<IJobs[]>();
     imagesUrl$ = new Observable<string[]>();
+    menuOption$ = new Observable<IMenu[]>();
     pathImages: { [key: string]: string } = {};
+    showSpinner = signal<boolean>(false);
 
     footerOptions = [
         {
@@ -62,6 +64,7 @@ export class CommonService {
         this.studiesData$ = this._STORE.select(selectStudies);
         this.jobsData$ = this._STORE.select(selectJobs);
         this.imagesUrl$ = this._STORE.select(selectImages);
+        this.menuOption$ = this._STORE.select(selectMenuOptions);
 
         this._STORE.select(selectImages).pipe(
             takeUntilDestroyed(this._DESTROYREF)
@@ -73,6 +76,10 @@ export class CommonService {
                 this.pathImages[relativeRoutes.replaceAll('/assets/', '')] = url;
             })
         });
+    }
+
+    shouldShowSpinner(isLoading: boolean) {
+        this.showSpinner.set(isLoading);
     }
     
     navigate(route: string) {

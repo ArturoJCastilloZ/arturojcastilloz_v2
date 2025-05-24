@@ -1,5 +1,4 @@
-<nav class="navbar"
-    [ngClass]="{'md:bg-[#000000e6]': addBackground, 'bg-[#000000]': isMobile }">
+<nav class="navbar">
     <div class="navbar-content">
         <!-- Logo -->
         <div class="flex items-center">
@@ -9,7 +8,9 @@
         <!-- Desktop Menu -->
         <div class="hidden md:flex space-x-6 md:text-md font-semibold">
             @for (item of menuOptions; track $index) {
-                <a href="javascript:void(0)" (click)="scrollTo(item.Enlace)" class="link">{{item?.Titulo}}</a>
+                @if (item._id !== 5) {
+                    <a [routerLink]="item.Enlace" class="link">{{item?.Titulo}}</a>
+                }
             }
         </div>
 
@@ -25,7 +26,9 @@
     <!-- Mobile Menu -->
     <div class="md:hidden bg-[#000000e6] text-white" [class.hidden]="!isMenuOpen">
         @for (item of menuOptions; track $index) {
-            <a href="javascript:void(0)" (click)="scrollTo(item.Enlace); isMenuOpen = false" class="link block px-4 py-2 hover:bg-gray-600">{{item?.Titulo}}</a>
+            @if (item._id !== 5) {
+                <a [routerLink]="item.Enlace" (click)="isMenuOpen = false" class="link block px-4 py-2 hover:bg-gray-600">{{item?.Titulo}}</a>
+            }
         }
     </div>
 </nav>

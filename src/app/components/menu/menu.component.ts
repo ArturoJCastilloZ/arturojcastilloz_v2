@@ -12,6 +12,7 @@ import { NgZorroAntdModule } from '../../ng-zorro-antd.module';
 import { CommonService } from '../../services/common.service';
 import { GET_HEADERS, GET_IMAGES_SUCCESS } from '../../state/actions/adjcz.action';
 import { selectMenuOptions } from '../../state/selectors/app.select';
+import { DispatcherServices } from '../../services/dispatchers.service';
 
 @Component({
     selector: 'app-menu',
@@ -40,6 +41,7 @@ export class MenuComponent implements OnInit {
     private readonly _DESTROYREF = inject(DestroyRef);
     private readonly _COMMON = inject(CommonService);
     private readonly _SCROLLER = inject(ViewportScroller);
+    private readonly _DISPATCH = inject(DispatcherServices);
 
     @HostListener('window:scroll')
     onScroll(): void {
@@ -51,25 +53,29 @@ export class MenuComponent implements OnInit {
     }
 
     constructor() {
-        this._STORE.select(selectMenuOptions).pipe(
-            takeUntilDestroyed(this._DESTROYREF)
-        ).subscribe((data) => {
-            if (data?.length > 0) {
-                this.menuOptions = _.sortBy(data, function (f) {
-                    return f._id;
-                });
-            }
-        });
-
-        this._ACTIONS.pipe(
-            ofType(GET_IMAGES_SUCCESS),
-            takeUntilDestroyed(this._DESTROYREF)
-        ).subscribe(() => {
-        });
     }
     
     ngOnInit() {
+        this._COMMON.menuOption$.pipe(
+            takeUntilDestroyed(this._DESTROYREF)
+        ).subscribe({
+            next: (data) => {
+                if (data?.length === 0) {
+                    this._DISPATCH.GET_HEADERS().pipe(
+                        takeUntilDestroyed(this._DESTROYREF)
+                    ).subscribe({
+                        next: (action) => this.handleGetHeadersSuccess(action.response)
+                    })
+                } else this.handleGetHeadersSuccess(data)
+            }
+        })
         this.onResize();
+    }
+
+    handleGetHeadersSuccess(action: any) {
+        this.menuOptions = _.sortBy(action, function (f) {
+            return f._id;
+        });
     }
 
     ngAfterContentChecked() {

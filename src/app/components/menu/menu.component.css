@@ -1,5 +1,5 @@
 .navbar {
-    @apply transition fixed top-0 z-50 w-full text-white duration-500;
+    @apply transition bg-transparent w-full text-white duration-500;
 }
 
 .navbar-content {

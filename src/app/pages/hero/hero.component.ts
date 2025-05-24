@@ -8,6 +8,7 @@ import { GET_ABOUT, GET_HERO } from '../../state/actions/adjcz.action';
 import { IAbout, IHero } from '../../interfaces/app.interface';
 import { CommonModule } from '@angular/common';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
+import { DispatcherServices } from '../../services/dispatchers.service';
 
 @Component({
     selector: 'app-hero',
@@ -23,8 +24,9 @@ export class HeroComponent implements OnInit {
     userDescription: IHero[] = [];
     career: string = '';
 
-    public readonly _COMMON = inject(CommonService);
     private readonly _DESTROYREF = inject(DestroyRef);
+    private readonly _DISPATCH = inject(DispatcherServices);
+    public readonly _COMMON = inject(CommonService);
 
     constructor() {
         this._COMMON.aboutData$?.pipe(
@@ -35,16 +37,25 @@ export class HeroComponent implements OnInit {
             }
         });
 
+    }
+
+    ngOnInit() {
         this._COMMON.heroData$?.pipe(
             takeUntilDestroyed(this._DESTROYREF)
         ).subscribe((data) => {
-            if (data?.length > 0) {
-                this.userDescription = data;
-            }
+            if (data?.length === 0) {
+                this._DISPATCH.GET_HERO().pipe(
+                    takeUntilDestroyed(this._DESTROYREF)
+                ).subscribe({
+                    next: (action) => this.handleGetHeroSuccess(action.response)
+                });
+            } else this.handleGetHeroSuccess(data)
         });
     }
 
-    ngOnInit() { }
+    handleGetHeroSuccess(action: any) {
+        this.userDescription = action;
+    }
 
     downloadCV() {
         const link = document.createElement('a');

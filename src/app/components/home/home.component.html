@@ -1,7 +1,11 @@
-<div class="h-screen">
-    <app-menu />
-    <div class="h-[100vh] bg-black">
+<div class="app">
+    <header>
+        <app-menu></app-menu>
+    </header>
+    <main>
         <router-outlet />
-    </div>
-    <app-footer />
+    </main>
+    <footer>
+        <app-footer></app-footer>
+    </footer>
 </div>

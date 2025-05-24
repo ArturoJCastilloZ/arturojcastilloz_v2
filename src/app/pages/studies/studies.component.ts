@@ -1,11 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, OnInit } from '@angular/core';
-import { Actions } from '@ngrx/effects';
-import { Store } from '@ngrx/store';
+import { Component, DestroyRef, inject, OnInit } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { NzCardModule } from 'ng-zorro-antd/card';
-import { CommonService } from '../../services/common.service';
-import { GET_STUDIES } from '../../state/actions/adjcz.action';
 import { IStudies } from '../../interfaces/app.interface';
+import { DispatcherServices } from '../../services/dispatchers.service';
+import { CommonService } from '../../services/common.service';
 
 @Component({
     selector: 'app-studies',
@@ -21,20 +20,31 @@ export class StudiesComponent implements OnInit {
 
     studiesData: IStudies[] = [];
 
-    private readonly _ACTIONS = inject(Actions);
-    private readonly _STORE = inject(Store<any>);
+    private readonly _DISPATCH = inject(DispatcherServices);
+    private readonly _DESTROYREF = inject(DestroyRef);
     private readonly _COMMON = inject(CommonService);
 
     constructor() {
-        this._COMMON.studiesData$.subscribe((data) => {
-            if (data?.length > 0) {
-                this.studiesData = data;
-            }
-        });
     }
 
     ngOnInit() {
-        
+        this._COMMON.studiesData$.pipe(
+            takeUntilDestroyed(this._DESTROYREF),
+        ).subscribe({
+            next: (data) => {
+                if (data?.length === 0) {
+                    this._DISPATCH.GET_STUDIES().pipe(
+                        takeUntilDestroyed(this._DESTROYREF)
+                    ).subscribe({
+                        next: (action) => this.handleGetStudiesSuccess(action.response)
+                    });
+                } else this.handleGetStudiesSuccess(data)
+            } 
+        })
+    }
+
+    handleGetStudiesSuccess(action: any) {
+        this.studiesData = action;
     }
 
 }

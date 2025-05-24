@@ -13,6 +13,8 @@ import { provideNzIcons } from 'ng-zorro-antd/icon';
 import { icons } from './icons-provider';
 import { effectArray } from './state/effects';
 import { metaReducers, ROOT_REDUCER } from './state/states/app.state';
+import { provideRouter } from '@angular/router';
+import { routes } from './app.routes';
 
 registerLocaleData(es);
 
@@ -27,5 +29,7 @@ export const appConfig: ApplicationConfig = {
         provideNzI18n(es_ES),
         importProvidersFrom(FormsModule),
         provideAnimationsAsync(),
-        provideHttpClient()]
+        provideHttpClient(),
+        provideRouter(routes)
+    ]
 };
